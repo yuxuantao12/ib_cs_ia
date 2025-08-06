@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="col-md-9" style="padding-left: 10px">
+        <h2>Send a message to {{ receiver[1] }}</h2>
+
+        <!-- Form to send a message -->
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="content" class="form-control" rows="4" placeholder="Type your message here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="col-md-9" style="padding-left: 10px">
+        <h2>Inbox</h2>
+
+        <!-- Static list of users to send messages to -->
+        <h3 class="mb-4">Send a Message to...</h3>
+        <ul class="list-unstyled mb-4">
+            {% for user in users %}
+                <li class="mb-2">
+                    <a href="{{ url_for('send_message', receiver_id=user[1]) }}" class="btn btn-light">
+                        {{ user[0] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Loop through the messages and display each one in a card -->
+        {% for message in messages %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <!-- Display the sender's name -->
+                    <h3 class="card-title mb-1"><strong>From:</strong> {{ message[5] }}</h3>
+                    <!-- Display the message timestamp -->
+                    <h6 class="card-subtitle mb-2 text-muted">Sent on: {{ message[4] }}</h6>
+                    <hr>
+                    <!-- Display the message content -->
+                    <p class="card-text">{{ message[3] }}</p>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Display a card if there are no messages -->
+        {% if messages|length == 0 %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title mb-1">No messages in your inbox</h3>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
